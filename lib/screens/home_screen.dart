@@ -66,20 +66,23 @@ class Home extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12.0),
                           color: Colors.white,
                         ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              'assets/icons/search.png',
-                              height: 20,
-                            ),
-                            SizedBox(width: 20),
-                            Text(
-                              'Search',
-                              style:
-                                  TextStyle(color: kDarkGray, fontSize: 17.5),
-                            ),
-                          ],
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/icons/search.png',
+                                height: 20,
+                              ),
+                              SizedBox(width: 20),
+                              Text(
+                                'Search',
+                                style:
+                                    TextStyle(color: kDarkGray, fontSize: 17.5),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
