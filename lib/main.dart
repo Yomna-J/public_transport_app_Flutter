@@ -27,6 +27,7 @@ class _MainState extends State<Main> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         backgroundColor: Colors.white,
+        selectedFontSize: 0,
         elevation: 0.0,
         onTap: (int index) {
           setState(() {
@@ -37,20 +38,20 @@ class _MainState extends State<Main> {
         items: [
           BottomNavigationBarItem(
             icon: _currentIndex == 0
-                ? Image.asset('assets/icons/home_colored.png', width: 30)
-                : Image.asset('assets/icons/home.png', width: 30),
+                ? Image.asset('assets/icons/home_colored.png', width: 25)
+                : Image.asset('assets/icons/home.png', width: 25),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 1
-                ? Image.asset('assets/icons/profile_colored.png', width: 25)
-                : Image.asset('assets/icons/profile.png', width: 25),
+                ? Image.asset('assets/icons/profile_colored.png', width: 20)
+                : Image.asset('assets/icons/profile.png', width: 20),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 2
-                ? Image.asset('assets/icons/map_colored.png', width: 25)
-                : Image.asset('assets/icons/map.png', width: 25),
+                ? Image.asset('assets/icons/map_colored.png', width: 20)
+                : Image.asset('assets/icons/map.png', width: 20),
             label: '',
           ),
         ],

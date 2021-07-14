@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 15.0),
+                SizedBox(height: 10.0),
                 Padding(
                   padding: EdgeInsets.only(left: 5.0),
                   child: Text(
@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 15.0),
+                SizedBox(height: 10.0),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -88,7 +88,7 @@ class Home extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 15.0),
               ],
             ),
           ),
@@ -119,7 +119,7 @@ class Home extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 25.0, vertical: 10.0),
+                          horizontal: 25.0, vertical: 1.0),
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
@@ -132,10 +132,20 @@ class Home extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 15),
                             TransportCard(
                               name: 'Bus',
                               image: 'assets/images/bus.png',
+                              pressSelect: () {},
+                            ),
+                            SizedBox(height: 20),
+                            TransportCard(
+                              name: 'MRT',
+                              image: 'assets/images/small_mrt.png',
+                              background: kMoonStones,
+                              topValue: 30,
+                              bottomValue: 0,
+                              pressSelect: () {},
                             ),
                           ],
                         ),

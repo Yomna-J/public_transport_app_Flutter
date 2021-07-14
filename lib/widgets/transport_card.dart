@@ -5,18 +5,28 @@ class TransportCard extends StatelessWidget {
   final String name;
   final String image;
   final Color background;
+  final double topValue;
+  final double bottomValue;
+  final VoidCallback pressSelect;
 
   const TransportCard({
     Key? key,
     required this.name,
     required this.image,
     this.background = kLightBlue,
+    this.topValue = 15,
+    this.bottomValue = 0,
+    required this.pressSelect,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 15, bottom: 25, left: 25, right: 25),
+      padding: EdgeInsets.only(
+        top: 15,
+        bottom: 25,
+        left: 25,
+      ),
       height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -40,7 +50,7 @@ class TransportCard extends StatelessWidget {
           Positioned(
             bottom: 0,
             child: GestureDetector(
-              onTap: () {},
+              onTap: pressSelect,
               child: Container(
                 padding: EdgeInsets.all(2),
                 height: 25,
@@ -64,10 +74,13 @@ class TransportCard extends StatelessWidget {
           ),
           Positioned(
             right: 0,
-            top: 15,
-            child: Image.asset(
-              image,
-              height: 90,
+            top: topValue,
+            bottom: bottomValue,
+            child: Container(
+              width: 235,
+              child: Image.asset(
+                image,
+              ),
             ),
           ),
         ],
