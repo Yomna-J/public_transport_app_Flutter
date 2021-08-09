@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:public_transport_app/constants.dart';
+import 'package:public_transport_app/screens/details_screen.dart';
 import 'package:public_transport_app/widgets/account_details.dart';
 import 'package:public_transport_app/widgets/transport_card.dart';
-
-void main() => runApp(MaterialApp(
-      home: Home(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'OpenSans'),
-    ));
 
 class Home extends StatelessWidget {
   @override
@@ -145,7 +140,12 @@ class Home extends StatelessWidget {
                               background: kMoonStones,
                               topValue: 30,
                               bottomValue: 0,
-                              pressSelect: () {},
+                              pressSelect: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return MRTDetailsScreen();
+                                }));
+                              },
                             ),
                           ],
                         ),

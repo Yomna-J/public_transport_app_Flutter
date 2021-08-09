@@ -72,8 +72,9 @@ flutter:
           weight: 600
         - asset: fonts/OpenSans-ExtraBold.ttf
           weight: 700
-    - family: Myriad Pro
+    - family: MyriadPro
       fonts:
+        - asset: fonts/MYRIADPRO-REGULAR.OTF  
         - asset: fonts/MYRIADPRO-BOLD.OTF
           weight: 600
         
