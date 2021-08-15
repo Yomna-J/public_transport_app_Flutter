@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:public_transport_app/constants.dart';
 import 'package:public_transport_app/widgets/from_to_card.dart';
-import 'package:public_transport_app/widgets/schedule.dart';
+import 'package:public_transport_app/widgets/schedule_box.dart';
+import '../schedule.dart';
 
-class MRTDetailsScreen extends StatelessWidget {
-  const MRTDetailsScreen({Key? key}) : super(key: key);
+class DetailsScreen extends StatelessWidget {
+  String title;
+  String image;
+  String location;
+  String destination;
+  var schedules;
+
+  DetailsScreen({
+    Key? key,
+    required this.title,
+    required this.image,
+    required this.location,
+    required this.destination,
+    required this.schedules
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +30,7 @@ class MRTDetailsScreen extends StatelessWidget {
             padding: EdgeInsets.only(right: 20.0, left: 20.0, top: 50.0),
             child: Center(
                 child: Text(
-              'MRT',
+              title,
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Myriad Pro',
@@ -32,7 +46,7 @@ class MRTDetailsScreen extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage('assets/images/mrt.png'),
+                image: AssetImage(image),
               ),
             ),
           ),
@@ -59,8 +73,7 @@ class MRTDetailsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FromToCard(
-                      from: 'Lorem MRT Station', to: 'Dolor MRT Station'),
+                  FromToCard(from: location, to: destination),
                   SizedBox(height: 25),
                   Text(
                     'Choose Schedule',
@@ -75,36 +88,13 @@ class MRTDetailsScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       child: Column(
                         children: [
-                          Schedule(
-                            fromTime: '10:00',
-                            toTime: '10:30',
-                            location: 'Lorem MRT Station',
-                            price: 5.0,
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 3),
-                            height: 1.0,
-                            width: double.infinity,
-                            color: kDarkGray,
-                          ),
-                          Schedule(
-                            fromTime: '11:05',
-                            toTime: '11:45',
-                            location: 'Lorem MRT Station',
-                            price: 5.0,
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 3),
-                            height: 1.0,
-                            width: double.infinity,
-                            color: kDarkGray,
-                          ),
-                          Schedule(
-                            fromTime: '11:25',
-                            toTime: '12:30',
-                            location: 'Lorem MRT Station',
-                            price: 3.0,
-                          ),
+                          for (Schedule schedule in schedules) ...[
+                            ScheduleBox(
+                                fromTime: schedule.fromTime,
+                                toTime: schedule.toTime,
+                                location: schedule.location,
+                                price: schedule.price)
+                          ]
                         ],
                       ),
                     ),

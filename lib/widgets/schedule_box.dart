@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:public_transport_app/constants.dart';
 
-class Schedule extends StatelessWidget {
+class ScheduleBox extends StatelessWidget {
   final String fromTime;
   final String toTime;
   final String location;
   final double price;
 
-  const Schedule({
+  const ScheduleBox({
     Key? key,
     required this.fromTime,
     required this.toTime,
@@ -19,7 +19,7 @@ class Schedule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
       child: Stack(
         children: <Widget>[
           Positioned(
@@ -58,6 +58,18 @@ class Schedule extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 13),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(left: 3),
+                        height: 1.0,
+                        color: kDarkGray,
                       ),
                     ),
                   ],

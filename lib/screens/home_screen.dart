@@ -1,12 +1,40 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:public_transport_app/constants.dart';
 import 'package:public_transport_app/screens/details_screen.dart';
 import 'package:public_transport_app/widgets/account_details.dart';
 import 'package:public_transport_app/widgets/transport_card.dart';
 
+import '../schedule.dart';
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Example of JSON data as retrieved from the DB
+    String json = """[{
+   "fromTime":"10:00",
+   "toTime":"10:30",
+   "location":"Lorem MRT Station",
+   "price":5.0
+},
+{
+   "fromTime":"11:05",
+   "toTime":"11:45",
+   "location":"Lorem MRT Station",
+   "price":5.0
+},
+{
+   "fromTime":"11:25",
+   "toTime":"12:30",
+   "location":"Lorem MRT Station",
+   "price":3.0
+
+}]""";
+
+    var decoded = jsonDecode(json);
+    var schedules =
+        (decoded as List).map((data) => new Schedule.fromJson(data)).toList();
     return Scaffold(
       backgroundColor: kMoonStones,
       body: Column(
@@ -143,7 +171,13 @@ class Home extends StatelessWidget {
                               pressSelect: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return MRTDetailsScreen();
+                                  return DetailsScreen(
+                                    title: 'MRT',
+                                    image: 'assets/images/mrt.png',
+                                    location: 'Lorem MRT Station',
+                                    destination: 'Dolor MRT Station',
+                                    schedules: schedules,
+                                  );
                                 }));
                               },
                             ),
