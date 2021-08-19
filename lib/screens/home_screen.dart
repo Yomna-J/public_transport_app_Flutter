@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:public_transport_app/Account.dart';
 import 'package:public_transport_app/constants.dart';
 import 'package:public_transport_app/screens/details_screen.dart';
-import 'package:public_transport_app/widgets/account_details.dart';
+import 'package:public_transport_app/widgets/account_box.dart';
 import 'package:public_transport_app/widgets/transport_card.dart';
 
 import '../schedule.dart';
@@ -12,7 +13,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Example of JSON data as retrieved from the DB
-    String json = """[{
+    String schJson = """[{
    "fromTime":"10:00",
    "toTime":"10:30",
    "location":"Lorem MRT Station",
@@ -31,10 +32,17 @@ class Home extends StatelessWidget {
    "price":3.0
 
 }]""";
-
-    var decoded = jsonDecode(json);
+    var dSch = jsonDecode(schJson);
     var schedules =
-        (decoded as List).map((data) => new Schedule.fromJson(data)).toList();
+        (dSch as List).map((data) => new Schedule.fromJson(data)).toList();
+
+    // Example of JSON data as retrieved from the DB
+    String accJson =
+        '{"firstName": "John", "lastName": "Doe", "balance": 18, "rewards": 10.25, "trips": 189}';
+
+    var dAcc = jsonDecode(accJson);
+    Account account = Account.fromJson(dAcc);
+
     return Scaffold(
       backgroundColor: kMoonStones,
       body: Column(
@@ -188,45 +196,10 @@ class Home extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-                    child: Expanded(
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-                        height: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 3,
-                              blurRadius: 6,
-                              offset: Offset(1, 2),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            AccountDetail(
-                              title: 'Balance',
-                              value: '\$ 18',
-                            ),
-                            AccountDetail(
-                              title: 'Rewards',
-                              value: '\$ 10.25',
-                            ),
-                            AccountDetail(
-                              title: 'Total Trips',
-                              value: '189',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  child: AccountBox(
+                    balance: account.balance,
+                    rewards: account.rewards,
+                    trips: account.trips,
                   ),
                 ),
               ],
