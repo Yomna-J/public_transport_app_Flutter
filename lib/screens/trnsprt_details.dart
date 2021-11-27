@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:public_transport_app/constants.dart';
+import 'package:public_transport_app/screens/ticket_details.dart';
 import 'package:public_transport_app/widgets/from_to_card.dart';
 import 'package:public_transport_app/widgets/schedule_box.dart';
+import 'package:public_transport_app/widgets/ticket_info.dart';
 import '../schedule.dart';
 
-class DetailsScreen extends StatelessWidget {
-  String title;
-  String image;
-  String location;
-  String destination;
-  var schedules;
+class TrnsprtDetails extends StatelessWidget {
+  final String title;
+  final String image;
+  final String location;
+  final String destination;
+  final List schedules;
 
-  DetailsScreen({
+  const TrnsprtDetails({
     Key? key,
     required this.title,
     required this.image,
     required this.location,
     required this.destination,
-    required this.schedules
+    required this.schedules,
   }) : super(key: key);
 
   @override
@@ -39,7 +41,7 @@ class DetailsScreen extends StatelessWidget {
               ),
             )),
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           Container(
             width: MediaQuery.of(context).size.width,
             height: 120,
@@ -50,7 +52,7 @@ class DetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 40.0),
+          SizedBox(height: 30.0),
           Expanded(
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -79,7 +81,7 @@ class DetailsScreen extends StatelessWidget {
                     'Choose Schedule',
                     style: TextStyle(
                       fontFamily: 'MyriadPro',
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w700,
                       fontSize: 26,
                     ),
                   ),
@@ -90,10 +92,26 @@ class DetailsScreen extends StatelessWidget {
                         children: [
                           for (Schedule schedule in schedules) ...[
                             ScheduleBox(
-                                fromTime: schedule.fromTime,
-                                toTime: schedule.toTime,
-                                location: schedule.location,
-                                price: schedule.price)
+                              fromTime: schedule.fromTime,
+                              toTime: schedule.toTime,
+                              location: schedule.location,
+                              price: schedule.price,
+                              pressSelect: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return TicketDetails(
+                                    ticketInfo: TicketInfo(
+                                      location: location,
+                                      destination: destination,
+                                      fromTime: schedule.fromTime,
+                                      toTime: schedule.toTime,
+                                       price: schedule.price,
+                                      QrCode: 'assets/images/qr.png',
+                                    ),
+                                  );
+                                }));
+                              },
+                            ),
                           ]
                         ],
                       ),

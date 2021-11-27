@@ -6,6 +6,7 @@ class ScheduleBox extends StatelessWidget {
   final String toTime;
   final String location;
   final double price;
+  final VoidCallback pressSelect;
 
   const ScheduleBox({
     Key? key,
@@ -13,6 +14,7 @@ class ScheduleBox extends StatelessWidget {
     required this.toTime,
     required this.location,
     required this.price,
+    required this.pressSelect,
   }) : super(key: key);
 
   @override
@@ -90,7 +92,7 @@ class ScheduleBox extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 GestureDetector(
-                  //TODO: Extract as a rounded button
+                  onTap: pressSelect,
                   child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(2),

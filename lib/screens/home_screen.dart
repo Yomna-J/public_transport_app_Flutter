@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:public_transport_app/Account.dart';
 import 'package:public_transport_app/constants.dart';
-import 'package:public_transport_app/screens/details_screen.dart';
+import 'package:public_transport_app/screens/trnsprt_details.dart';
 import 'package:public_transport_app/widgets/account_box.dart';
 import 'package:public_transport_app/widgets/transport_card.dart';
 
@@ -48,7 +48,7 @@ class Home extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(right: 20.0, left: 20.0, top: 40.0),
+            padding: EdgeInsets.only(right: 20.0, left: 20.0, top: 35.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -73,7 +73,6 @@ class Home extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10.0),
                 Padding(
                   padding: EdgeInsets.only(left: 5.0),
                   child: Text(
@@ -84,35 +83,31 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.0),
+                SizedBox(height: 8.0),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          color: Colors.white,
-                        ),
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset(
-                                'assets/icons/search.png',
-                                height: 20,
-                              ),
-                              SizedBox(width: 20),
-                              Text(
-                                'Search',
-                                style:
-                                    TextStyle(color: kDarkGray, fontSize: 17.5),
-                              ),
-                            ],
+                      child: TextField(
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          prefixIcon: Image.asset('assets/icons/search2.png'),
+                          labelText: "Search",
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            borderSide: BorderSide(color: Colors.blue),
                           ),
                         ),
                       ),
@@ -169,7 +164,7 @@ class Home extends StatelessWidget {
                               image: 'assets/images/bus.png',
                               pressSelect: () {},
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 16),
                             TransportCard(
                               name: 'MRT',
                               image: 'assets/images/small_mrt.png',
@@ -179,7 +174,7 @@ class Home extends StatelessWidget {
                               pressSelect: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return DetailsScreen(
+                                  return TrnsprtDetails(
                                     title: 'MRT',
                                     image: 'assets/images/mrt.png',
                                     location: 'Lorem MRT Station',
